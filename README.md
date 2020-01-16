@@ -13,7 +13,7 @@ The first part to be implemented was the additional syscall used to operate our 
 2. **MUTEX_LOCK** (which is a define for _1_): locks the mutex and remembers the process which holds the lock;
 3. **MUTEX_UNLOCK** (which is a define for _2_): unlocks the mutex and wakes up one of the sleeping processes (memorized inside the mutex);
 
-#### While taking a glance at the implementation inside _kern/sys\_umutex.c_:
+#### The implementation is found inside _kern/sys\_umutex.c_, which is linked to the syscall within _conf/files_:
 - the _u_(ser)_mutex_ structure contains four fields:
   - **SIMPLEQ_HEAD(pids_head,pidentry) head**: a queue structure which holds all the processes waiting at the umutex;
     - the **pidentry** structure has two fields: a queue entry for the process (**SIMPLEQ_ENTRY(pidentry)**) and the process id (**pid_t pid**);

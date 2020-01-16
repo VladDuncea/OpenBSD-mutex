@@ -9,9 +9,9 @@ The code was written and compiled inside the Kernel, the attached folders being 
 The first part to be implemented was the additional syscall used to operate our mutex implementation, which can be found at the end of the _kern/syscalls.master_: _void umutex(void \**mtx, int op)_. It takes two parameters, the _address_ of a mutex pointer and the _operation_ to be performed.
 
 #### Looking into _sys/mutex.h_ we can see that we can perform three operations using our mutex:
-1. **MUTEX_INIT** (which is a define for _3_): initializez the mutex, handling the allocation of the lock;
-2. **MUTEX_LOCK** (which is a define for _1_): locks the mutex and remembers the process which holds the lock;
-3. **MUTEX_UNLOCK** (which is a define for _2_): unlocks the mutex and wakes up one of the sleeping processes (memorized inside the mutex);
+1. **UMUTEX_INIT** (which is a define for _3_): initializez the mutex, handling the allocation of the lock;
+2. **UMUTEX_LOCK** (which is a define for _1_): locks the mutex and remembers the process which holds the lock;
+3. **UMUTEX_UNLOCK** (which is a define for _2_): unlocks the mutex and wakes up one of the sleeping processes (memorized inside the mutex);
 
 #### The implementation is found inside _kern/sys\_umutex.c_, which is linked to the syscall within _conf/files_:
 - the _u_(ser)_mutex_ structure contains four fields:
